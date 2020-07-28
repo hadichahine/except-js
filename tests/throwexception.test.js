@@ -1,4 +1,4 @@
-const { create, handle } = require('../src/except')
+const { create, handle } = require('except-js')
 
 test('test that exception is handled correctly when 1 handle is used.', () => {
     const TestException = create('TestException')
