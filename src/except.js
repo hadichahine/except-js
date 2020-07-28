@@ -1,8 +1,11 @@
 module.exports = {
-    create(){
-
+    create(type){
+        const CustomException = class { constructor(){this.type = type} }
+        CustomException.type = type
+        return CustomException
     },
-    handle(exception, a, handler){
-        handler()
+    handle(exception, expectedExceptionClass, handler){
+        if(expectedExceptionClass.type === exception.type)
+            handler()
     }
 }
