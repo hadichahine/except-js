@@ -43,3 +43,22 @@ test('test that exception is handled correctly when 2 handles are used.', () => 
     expect(isFirstHandlerRun).toBe(false)
     expect(isSecondHandlerRun).toBe(true)
 })
+
+test('test that exception is thrown again when no compatible handlers matched.', () => {
+    const TestException = create('TestException')
+    let isHandlerRun = false
+    expect(() => {
+        try {
+            throw 'anything'
+        }catch(exception){
+            handle(exception,
+                [{
+                    exception: TestException,
+                    handler() {
+                        isHandlerRun = true
+                    },
+            }])
+        }
+    }).toThrowError('anything')
+    expect(isHandlerRun).toBe(false)
+})

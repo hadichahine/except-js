@@ -5,7 +5,10 @@ module.exports = {
         return CustomException
     },
     handle(exception, typeHandlesMap){
-        typeHandlesMap.find((element) => element.exception.type === exception.type)
-            .handler()
+        const handlingManifest = typeHandlesMap
+            .find((element) => element.exception.type === exception.type)
+        if(handlingManifest)
+            handlingManifest.handler()
+        else throw exception
     }
 }
