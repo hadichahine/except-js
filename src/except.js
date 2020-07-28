@@ -4,8 +4,8 @@ module.exports = {
         CustomException.type = type
         return CustomException
     },
-    handle(exception, expectedExceptionClass, handler){
-        if(expectedExceptionClass.type === exception.type)
-            handler()
+    handle(exception, typeHandlesMap){
+        typeHandlesMap.find((element) => element.exception.type === exception.type)
+            .handler()
     }
 }

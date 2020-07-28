@@ -6,9 +6,13 @@ test('test that exception is handled correctly when 1 handle is used.', () => {
     try {
         throw new TestException()
     }catch(exception){
-        handle(exception, TestException, () => {
-            isHandlerRun = true
-        })
+        handle(exception,
+            [{
+                exception:TestException,
+                handler() {
+                    isHandlerRun = true
+                },
+            }])
     }
     expect(isHandlerRun).toBe(true)
 })
@@ -20,12 +24,21 @@ test('test that exception is handled correctly when 2 handles are used.', () => 
     try {
         throw new SecondException()
     }catch(exception){
-        handle(exception, FirstException, () => {
-            isFirstHandlerRun = true
-        })
-        handle(exception, SecondException, () => {
-            isSecondHandlerRun = true
-        })
+        handle(exception,
+            [
+                {
+                    exception: FirstException,
+                    handler(){
+                        isFirstHandlerRun = true
+                    }
+                },
+                {
+                    exception: SecondException,
+                    handler(){
+                        isSecondHandlerRun = true
+                    }
+                }
+            ])
     }
     expect(isFirstHandlerRun).toBe(false)
     expect(isSecondHandlerRun).toBe(true)
