@@ -7,7 +7,7 @@ of different types within multiple catch statements. This is pretty standard on 
 
 
 ```javascript
-const { create, handle } = require('../src/except')
+const { create, handle } = require('except-js')
 
 const ExceptionTest = create('ExceptionTest')
 
