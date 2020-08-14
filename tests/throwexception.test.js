@@ -49,7 +49,7 @@ test('test that exception is thrown again when no compatible handlers matched.',
     let isHandlerRun = false
     expect(() => {
         try {
-            throw 'anything'
+            throw 'an error string'
         }catch(exception){
             handle(exception,
                 [{
@@ -59,6 +59,6 @@ test('test that exception is thrown again when no compatible handlers matched.',
                     },
             }])
         }
-    }).toThrowError('anything')
+    }).toThrowError('an error string')
     expect(isHandlerRun).toBe(false)
 })
