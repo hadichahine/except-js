@@ -12,7 +12,7 @@ const { create, handle } = require('except-js')
 const ExceptionTest = create('ExceptionTest')
 
 function helloWorld(){
-    throw new ExceptionTest()
+    throw new ExceptionTest('ExceptionTest here!')
 }
 
 try {
@@ -22,7 +22,7 @@ try {
         {
             exception: ExceptionTest,
             handler: () => {
-                console.log('Yes I am ExceptionTest.')
+                console.log('Message:', exception.message)
             }
         }
     ])
