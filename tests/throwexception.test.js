@@ -62,3 +62,20 @@ test('test that exception is thrown again when no compatible handlers matched.',
     }).toThrowError('an error string')
     expect(isHandlerRun).toBe(false)
 })
+
+test('test that thrown exception has exception message.', () => {
+    const TestException = create('TestException')
+    let message
+    try {
+        throw new TestException('X caused this exception.')
+    }catch(exception){
+        handle(exception,
+            [{
+                exception:TestException,
+                handler() {
+                    message = exception.message
+                },
+            }])
+    }
+    expect(message).toBe('X caused this exception.')
+})

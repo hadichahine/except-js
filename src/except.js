@@ -1,8 +1,13 @@
 module.exports = {
     create(type){
-        const CustomException = class { constructor(){this.type = type} }
-        CustomException.type = type
-        return CustomException
+        const ExceptJSException = class {
+            constructor(message){
+                this.type = type
+                this.message = message
+            }
+        }
+        ExceptJSException.type = type
+        return ExceptJSException
     },
     handle(exception, typeHandlesMap){
         const handlingManifest = typeHandlesMap
