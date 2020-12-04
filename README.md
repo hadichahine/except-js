@@ -5,7 +5,35 @@ of different types within multiple catch statements. This is pretty standard on 
 
 # Usage
 
+## Polished Syntax
+```javascript
+const { create, handle } = require('except-js')
 
+const Exception1Test = create('Exception1Test')
+const Exception2Test = create('Exception2Test')
+
+function helloWorld(){
+    throw new ExceptionTest('ExceptionTest here!')
+}
+
+try {
+    helloWorld()
+}catch(exception){
+    except(exception)
+        .on(Exception1Test)
+        .do(() => {
+            console.log('[Exp1] Message:', exception.message)
+        })
+        .on(Exception2Test)
+        .do(() => {
+            console.log('[Excp2] Message:', exception.message)
+        })
+        .done()
+}
+```
+
+
+## Traditional Syntax
 ```javascript
 const { create, handle } = require('except-js')
 
