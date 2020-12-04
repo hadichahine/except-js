@@ -7,13 +7,13 @@ of different types within multiple catch statements. This is pretty standard on 
 
 ## Polished Syntax
 ```javascript
-const { create, handle } = require('except-js')
+const { create, except } = require('except-js')
 
 const Exception1Test = create('Exception1Test')
 const Exception2Test = create('Exception2Test')
 
 function helloWorld(){
-    throw new ExceptionTest('ExceptionTest here!')
+    throw new Exception1Test('ExceptionTest here!')
 }
 
 try {
@@ -26,7 +26,7 @@ try {
         })
         .on(Exception2Test)
         .do(() => {
-            console.log('[Excp2] Message:', exception.message)
+            console.log('[Exp2] Message:', exception.message)
         })
         .done()
 }
