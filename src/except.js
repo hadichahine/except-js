@@ -1,20 +1,20 @@
 function handle(exception, typeHandlesMap){
     const handlingManifest = typeHandlesMap
-        .find((element) => element.exception.type === exception.type)
+        .find((element) => exception instanceof element.exception)
     if(handlingManifest)
         handlingManifest.handler()
     else throw exception
 }
 
 module.exports = {
-    create(type){
-        const ExceptJSException = class {
+    create(name){
+        const ExceptJSException = class extends Error {
             constructor(message){
-                this.type = type
+                super(message)
+                this.name = name
                 this.message = message
             }
         }
-        ExceptJSException.type = type
         return ExceptJSException
     },
     handle,
